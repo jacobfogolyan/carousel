@@ -1,0 +1,63 @@
+.container {
+	width: 100%;
+	max-width: 1000px;
+	margin: 0 auto;
+	background-color: #333;
+	display: block;
+}
+
+.switcher-container {
+	width: 100%;
+	overflow: hidden;
+	position: relative;
+}
+
+.switcher-container {
+	font-size: 0;
+	display: block;
+	width: 100%;
+	max-width: 1000px;
+}
+
+.switcher-container .slide {
+	width: 100%;
+	display: inline-block;
+	font-size: 12px;
+	position: absolute;
+	top: 0;
+	z-index: 1;
+	height: 200px;
+}
+.switcher-container .slide.active {
+	position: relative;
+}
+.switcher-container .slide:nth-child(1) {
+	background-color: #f00;
+}
+.switcher-container .slide:nth-child(2) {
+	background-color: #333;
+}
+.switcher-container .slide:nth-child(3) {
+	background-color: #ccc;
+}
+.switcher-container .slide:nth-child(4) {
+	background-color: #efefef;
+}
+.switcher-container .slide:nth-child(5) {
+	background-color: green;
+}
+
+.button {
+	text-align: center;
+}
+.buttons .dot {
+	width: 10px;
+	height: 10px;
+	background-color: #333;
+	display: inline-block;
+	background-color: #fff;
+}
+
+.buttons .dot.active {
+	background-color: #f00;
+}
