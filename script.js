@@ -3,7 +3,7 @@
 var switcher = (() => {
 
     var init = ( containerClass, slideClass, buttonClass ) => {
-        let debug;
+        var debug;
 
         if ( !containerClass || typeof(containerClass) === 'undefined' ) {
             debug = 1;
@@ -28,12 +28,12 @@ var switcher = (() => {
         }
         let slides = document.querySelectorAll(slideClass);
 
-        applyActive(buttons, findActive(slides));
+        applyActive(buttons, findActiveId(slides));
+        let oldId = findActiveId(buttons);
 
         //single click event to use bubbling.
         container.addEventListener('click', (e) => {
             //if target contains dot
-            let oldId = findActive(buttons);
 
             //if element is inactive
             if ( doesElementContainActive(e)) {
@@ -41,7 +41,7 @@ var switcher = (() => {
                 removeActive(buttons, oldId);
                 removeActive(slides, oldId);
                 e.target.classList.add('active');
-                let newId = findActive(buttons);
+                let newId = findActiveId(buttons);
                 applyActive( slides, newId );
 
             }
@@ -49,7 +49,7 @@ var switcher = (() => {
     };
 
     //return id of node that contains active class
-    var findActive = ( nodeList ) => {
+    var findActiveId = ( nodeList ) => {
         for ( let i = nodeList.length - 1; i >= 0; i-- ) {
             if ( nodeList[i].classList.contains('active') ) {
                 return i
@@ -71,20 +71,18 @@ var switcher = (() => {
         if (( e.target.classList.contains( 'dot' ) === false )) {
             return false
         }
+
         if (( e.target.classList.contains( 'active' ) )) {
             return false
         }
 
         return true
     }
-
 	return {
 		init: init
 	}
 
 })();
 
-// Example of passing data into a private method
-// the private method will then `console.log()` 'Hello!'
-
+//init is the only public method.
 switcher.init( ".container", ".slide", ".dot" );
